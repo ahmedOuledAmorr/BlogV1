@@ -3,8 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import IndexScreen from './src/Screens/IndexScreen';
+import { BlogProvider } from './src/context/BlogContext'; 
 
-export default function App() {
+
+const  App=() =>{
   const Stack = createNativeStackNavigator();
 
   return (
@@ -13,10 +15,10 @@ export default function App() {
         <Stack.Screen name="Blogs" component={IndexScreen} options={{ title: 'Blogs' }}/>
       </Stack.Navigator>
   </NavigationContainer>
-  
   );
 }
-
-const styles = StyleSheet.create({
-  
-});
+export default ()=>{
+  return <BlogProvider>
+      <App/>
+    </BlogProvider>
+}
