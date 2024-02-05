@@ -1,9 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import { NavigationContainer  } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import IndexScreen from './src/Screens/IndexScreen';
-import { BlogProvider } from './src/context/BlogContext'; 
+import { Provider } from './src/context/BlogContext'; 
+import ShowScreen from './src/Screens/ShowScreen';
+import CreateScreen from './src/Screens/CreateScreen';
+import { Feather } from '@expo/vector-icons';
+
+
 
 
 const  App=() =>{
@@ -12,13 +17,16 @@ const  App=() =>{
   return (
   <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Blogs" component={IndexScreen} options={{ title: 'Blogs' }}/>
+      <Stack.Screen name="Blogs" component={IndexScreen} options={{ title: 'Blogs' }}/>
+        <Stack.Screen name="Show" component={ShowScreen} options={{ title: 'Show' }}/>
+        <Stack.Screen name="Create" component={CreateScreen} options={{ title: 'Create' }}/>
+
       </Stack.Navigator>
   </NavigationContainer>
   );
 }
 export default ()=>{
-  return <BlogProvider>
+  return <Provider>
       <App/>
-    </BlogProvider>
+    </Provider>
 }
