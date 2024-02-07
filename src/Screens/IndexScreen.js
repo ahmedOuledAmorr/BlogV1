@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 
 
 export default function IndexScreen({navigation}) {
-  const {state,addBlogPost,deleteBlogPost}=useContext(Context);
+  const {state,deleteBlogPost}=useContext(Context);
 
   //Set Option , add headerRight with navigate to CreateScreen..
   useLayoutEffect(() => {
@@ -22,7 +22,6 @@ export default function IndexScreen({navigation}) {
   return (
     <View>
       <Text>IndexScreen</Text>
-      <Button title='Add Post' onPress={addBlogPost}/>
       <FlatList
       keyExtractor={(blogPosts)=>blogPosts.title}
       data={state}
@@ -61,3 +60,12 @@ const styles = StyleSheet.create({
     fontSize:24
   }
 })
+
+
+// return {
+//   headerRight: () => (
+//     <TouchableOpacity onPress={() => navigation.navigate('Edit')}>
+//       <EvilIcons name="pencil" size={35} />
+//     </TouchableOpacity>
+//   ),
+// };
