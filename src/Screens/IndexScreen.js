@@ -1,12 +1,20 @@
 import { View, Text,FlatList,Button,StyleSheet,TouchableOpacity} from 'react-native'
-import React,{useContext,useLayoutEffect }from 'react'
+import React,{useContext,useLayoutEffect,useEffect }from 'react'
 import {Context} from '../context/BlogContext';
 import { Feather } from '@expo/vector-icons';
 
 
 export default function IndexScreen({navigation}) {
-  const {state,deleteBlogPost}=useContext(Context);
-
+  const {state,deleteBlogPost,getBlogPosts}=useContext(Context);
+  useEffect(()=>{
+    getBlogPosts();
+    const listener= navigation.addListener('focus',()=>{
+      getBlogPosts();
+    })
+    return()=>{
+      listener.remove();
+    }
+  },[])
   //Set Option , add headerRight with navigate to CreateScreen..
   useLayoutEffect(() => {
     navigation.setOptions({
